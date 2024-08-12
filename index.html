@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Personal Website</title>
+    <style>
+        /* Genel Stiller */
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 50%, #f4842d 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+        header {
+            background: url('https://source.unsplash.com/1600x900/?technology') no-repeat center center/cover;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: -1;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3.5em;
+            font-family: 'Merriweather', serif;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-out;
+        }
+        header p {
+            font-size: 1.5em;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #fda085;
+            color: #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.2em;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #f6d365;
+            transform: translateY(-3px);
+        }
+        /* Yan Menü */
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #f2f2f2;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidenav a:hover {
+            color: #fda085;
+        }
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        nav {
+            background-color: #444;
+            padding: 14px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 3;
+        }
+        nav .menu-icon {
+            font-size: 30px;
+            cursor: pointer;
+            color: #fff;
+            position: absolute;
+            left: 20px;
+            top: 8px;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: 100px;
+            animation: slideIn 1s ease-out;
+        }
+        .bio {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .bio img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            border: 5px solid #fda085;
+            margin-bottom: 20px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .bio img:hover {
+            transform: scale(1.1);
+        }
+        .bio h2 {
+            color: #fda085;
+            font-size: 2.5em;
+            margin: 0;
+            animation: fadeIn 1.2s ease-out;
+        }
+        .bio p {
+            font-size: 1.2em;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .blog-post {
+            margin-bottom: 40px;
+        }
+        .blog-post img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            filter: grayscale(20%);
+            transition: filter 0.3s;
+            animation: fadeIn 1.2s ease-out;
+        }
+        .blog-post img:hover {
+            filter: none;
+        }
+        .blog-post h3 {
+            color: #f6d365;
+            font-size: 2em;
+            margin-bottom: 10px;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+        .blog-post h3::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 5px;
+            background-color: #fda085;
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+        }
+        .blog-post p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .contact-form {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            animation: slideUp 1s ease-out;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #fda085;
+            outline: none;
+        }
+        .contact-form input[type="submit"] {
+            background: linear-gradient(135deg, #fda085, #f4842d);
+            border-radius: 25px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .contact-form input[type="submit"]:hover {
+            transform: scale(1.05);
+            background-color: #f6d365;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        footer p {
+            margin: 0;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 1.5em;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icons a:hover {
+            color: #fda085;
+            transform: translateY(-3px);
+        }
+        /* Animasyonlar */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <span class="menu-icon" onclick="openNav()">&#9776; Menu</span>
+    </nav>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#bio">Ana Sayfa</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">İletişim</a>
+    </div>
+
+    <header>
+        <h1>Adil Oğuz</h1>
+        <p>Profesyonel web geliştirici</p>
+        <a href="#contact" class="cta-button">Dokun</a>
+    </header>
+
+    <div class="container">
+        <section id="bio" class="bio">
+            <img src="/img/profile.jpg" alt="Profile Picture">
+            <h2>Adil Oğuz</h2>
+            <p>
+                Merhaba! Ben Adil, teknoloji sektöründe birkaç yıllık deneyime sahip yaratıcı ve özverili bir
+ web geliştiriciyim. Sadece işlevsel değil aynı zamanda estetik açıdan da hoş olan yenilikçi web çözümleri 
+geliştirmekte uzmanım. Düşüncelerimi ve fikirlerimi blogum aracılığıyla paylaştığım kişisel alanım hoş geldiniz.
+
+            </p>
+        </section>
+
+        <section id="blog">
+            <h2>Blog</h2>
+            <div class="blog-post">
+                <img src="/img/blog1.png" alt="Blog Image 1">
+                <h3>Hızla Değişen Bir Dünyada Yaratıcı Kalmak</h3>
+                <p>
+                    Teknolojinin sürekli değişen dünyasında yaratıcı kalmak zor olabilir.
+                    Bu blog yazısı, sıkı teslim tarihleri ve yüksek beklentilerle başa çıkarken yaratıcılığı nasıl koruyabileceğinizi tartışıyor.
+                </p>
+            </div>
+            <div class="blog-post">
+                <img src="/img/blog2.png" alt="Blog Image 2">
+                <h3>Hızlı Tempolu Bir Dünyada Yaratıcı Kalmak</h3>
+                <p>
+                    Modern web geliştirme trendlerini takip etmek, verimli ve ölçeklenebilir uygulamalar oluşturmak için çok önemlidir. 
+                    Burada, işinizde en iyi şekilde performans göstermenize yardımcı olabilecek bazı en iyi uygulamaları paylaşıyorum.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-form">
+            <h2>İletişim</h2>
+            <form>
+                <input type="text" name="name" placeholder="Ad" required>
+                <input type="email" name="email" placeholder="Soyad" required>
+                <textarea name="message" placeholder="Mesaj" required></textarea>
+                <input type="submit" value="Gönder">
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>Adil Oğuz &copy; 2024 | Tüm hakları saklıdır.</p>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="https://github.com" target="_blank"><i class="fa fa-github"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        /* Yan Menü Fonksiyonları */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+</body>
+</html>
