@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Profile Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+       
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --background-color: #2d3436;
+            --card-color: #34495e;
+            --text-color: #ecf0f1;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--background-color), var(--primary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .profile-card {
+            background-color: var(--card-color);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            width: 380px;
+            height: auto;
+            min-height: 300px;
+            text-align: center;
+            padding: 30px;
+            color: var(--text-color);
+            position: relative;
+            overflow: auto;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                0deg,
+                transparent,
+                var(--secondary-color),
+                var(--secondary-color)
+            );
+            transform: rotate(45deg);
+            animation: glowingBorder 3s linear infinite;
+        }
+
+        @keyframes glowingBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            background-color: var(--card-color);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .pro-tag {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .profile-image {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 5px 0;
+            color: var(--secondary-color);
+            font-size: 16px;
+        }
+
+        .buttons {
+            margin: 25px 0;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            border: none;
+            color: var(--text-color);
+            padding: 12px 30px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.6);
+        }
+
+        .skills {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .skills span {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .skills span:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(253, 121, 168, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-card">
+    <div class="card-content">
+        <div class="pro-tag">PRO</div>
+        <div class="profile-image">
+            <img src="img/profile.jpg" alt="Profile Image">
+        </div>
+        <h2>Adil Oğuz</h2>
+        <p>Türkiye, Istanbul.</p>
+        <p>Mobil geliştirici & ön uç geliştiricisi</p>
+        <div class="buttons">
+            <button class="btn">Mesaj</button>
+            <button class="btn">Takip et</button>
+        </div>
+        <div class="skills">
+            <span>UI/UX</span>
+            <span>Front End Development</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>React</span>
+            <span>Flutter</span>
+            <span>Kotlin</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
